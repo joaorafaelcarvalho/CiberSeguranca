@@ -100,10 +100,11 @@ export default function AlertPage() {
                             autoPlay
                             playsInline
                             // Styling applied directly to video:
-                            // - w-full: matches the width of the container (and the Info Card below)
+                            // - w-4/5: 80% width to ensure margins
+                            // - max-w-[280px]: explicit cap for narrow screens
                             // - max-h-[40vh]: restrictive height constraint
                             // - rounded-xl: rounded corners on the video itself
-                            className="w-full max-h-[40vh] h-auto object-contain rounded-xl shadow-2xl border-4 border-white/20 bg-black/20"
+                            className="w-4/5 max-w-[280px] max-h-[40vh] h-auto object-contain rounded-xl shadow-2xl border-4 border-white/20 bg-black/20"
                             onError={() => setVideoError(true)}
                             src={`/videos/${theme.videoFile}`}
                         >
