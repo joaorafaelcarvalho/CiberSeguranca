@@ -92,22 +92,25 @@ export default function AlertPage() {
                 className="z-10 w-full max-w-sm flex flex-col items-center gap-6 mb-12"
             >
 
-                {/* Video Player Container - Mobile Optimized (9:16 friendlier) */}
-                {/* Limited height (35vh) to leave room for text. Width restrained. */}
-                <div className="w-auto mx-auto rounded-lg overflow-hidden shadow-2xl border-4 border-white/30 relative bg-black/30">
+                {/* Video Player - Applied Styles Directly to Video to ensure perfect fit */}
+                <div className="flex justify-center w-full">
                     {!videoError ? (
                         <video
                             controls
                             autoPlay
                             playsInline
-                            className="max-h-[35vh] max-w-full h-auto w-auto object-contain block"
+                            // Styling applied directly to video:
+                            // - max-w-[85vw]: ensures 2.5% margin on each side on mobile
+                            // - max-h-[40vh]: restrictive height constraint
+                            // - rounded-xl: rounded corners on the video itself
+                            className="max-w-[85vw] max-h-[40vh] w-auto h-auto object-contain rounded-xl shadow-2xl border-4 border-white/20 bg-black/20"
                             onError={() => setVideoError(true)}
                             src={`/videos/${theme.videoFile}`}
                         >
                             Browser sem suporte.
                         </video>
                     ) : (
-                        <div className="flex flex-col items-center justify-center h-40 w-56 text-white/50 p-4">
+                        <div className="flex flex-col items-center justify-center h-40 w-56 text-white/50 p-4 border-4 border-white/20 rounded-xl bg-black/20">
                             <span className="text-xs text-center">Vídeo indisponível<br />({theme.videoFile})</span>
                         </div>
                     )}
