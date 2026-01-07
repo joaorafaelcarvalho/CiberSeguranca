@@ -8,7 +8,7 @@
   font-family: 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -27,7 +27,9 @@ body {
   min-height: 100vh;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: 'Orbitron', sans-serif;
 }
 
@@ -37,4 +39,23 @@ h1, h2, h3 {
   padding: 2rem;
   text-align: center;
   width: 100%;
+}
+
+/* Explicit Video Sizing Rules */
+.alert-video {
+  width: 100% !important;
+  max-width: 280px !important;
+  /* Strict cap corresponding to mobile views */
+  height: auto !important;
+  max-height: 40vh !important;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .alert-video {
+    max-width: 400px !important;
+    /* Allow slightly larger on desktop */
+  }
 }

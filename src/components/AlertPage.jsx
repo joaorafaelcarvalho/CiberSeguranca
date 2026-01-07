@@ -99,12 +99,10 @@ export default function AlertPage() {
                             controls
                             autoPlay
                             playsInline
-                            // Styling applied directly to video:
-                            // - w-4/5: 80% width to ensure margins
-                            // - max-w-[280px]: explicit cap for narrow screens
-                            // - max-h-[40vh]: restrictive height constraint
+                            // Styling applied via .alert-video in index.css
+                            // - width/max-width controlled via CSS for better specificity
                             // - rounded-xl: rounded corners on the video itself
-                            className="w-4/5 max-w-[280px] max-h-[40vh] h-auto object-contain rounded-xl shadow-2xl border-4 border-white/20 bg-black/20"
+                            className="alert-video rounded-xl shadow-2xl border-4 border-white/20 bg-black/20"
                             onError={() => setVideoError(true)}
                             src={`/videos/${theme.videoFile}`}
                         >
