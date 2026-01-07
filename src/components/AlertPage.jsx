@@ -93,7 +93,7 @@ export default function AlertPage() {
             >
 
                 {/* Video Player - Applied Styles Directly to Video to ensure perfect fit */}
-                <div className="flex justify-center w-full">
+                <div className="flex justify-center w-50">
                     {!videoError ? (
                         <video
                             controls
