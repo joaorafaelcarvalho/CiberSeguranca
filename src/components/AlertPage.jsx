@@ -100,10 +100,10 @@ export default function AlertPage() {
                             autoPlay
                             playsInline
                             // Styling applied directly to video:
-                            // - max-w-[85vw]: ensures 2.5% margin on each side on mobile
+                            // - w-full: matches the width of the container (and the Info Card below)
                             // - max-h-[40vh]: restrictive height constraint
                             // - rounded-xl: rounded corners on the video itself
-                            className="max-w-[85vw] max-h-[40vh] w-auto h-auto object-contain rounded-xl shadow-2xl border-4 border-white/20 bg-black/20"
+                            className="w-full max-h-[40vh] h-auto object-contain rounded-xl shadow-2xl border-4 border-white/20 bg-black/20"
                             onError={() => setVideoError(true)}
                             src={`/videos/${theme.videoFile}`}
                         >
