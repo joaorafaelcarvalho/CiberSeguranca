@@ -35,7 +35,7 @@ export default function AlertPage() {
             {/* Background decoration */}
             <div className="absolute inset-0 bg-black opacity-20 pointer-events-none fixed" />
 
-            {/* Animated Character Icon */}
+            {/* Animated Character Icon ("Boneco") */}
             <motion.div
                 initial={{ scale: 0, y: -100 }}
                 animate={{ scale: 1, y: 0 }}
@@ -57,9 +57,29 @@ export default function AlertPage() {
                         repeatType: "reverse",
                         ease: "easeInOut"
                     }}
-                    className="bg-white p-6 rounded-full shadow-2xl border-4 border-white/20 backdrop-blur-sm"
+                    className="bg-white p-6 rounded-full shadow-2xl border-4 border-white/20 backdrop-blur-sm relative"
                 >
-                    <theme.icon size={80} style={{ color: theme.color }} />
+                    {/* Eyes to make it a character */}
+                    <div className="absolute top-1/4 left-1/2 -translate-x-1/2 flex gap-4 z-20 w-full justify-center -mt-6">
+                        <motion.div
+                            className="w-8 h-8 bg-white rounded-full border-4 border-black flex items-center justify-center"
+                            initial={{ scaleY: 0.1 }}
+                            animate={{ scaleY: 1 }}
+                            transition={{ delay: 0.5 }}
+                        >
+                            <div className="w-2 h-2 bg-black rounded-full" />
+                        </motion.div>
+                        <motion.div
+                            className="w-8 h-8 bg-white rounded-full border-4 border-black flex items-center justify-center"
+                            initial={{ scaleY: 0.1 }}
+                            animate={{ scaleY: 1 }}
+                            transition={{ delay: 0.5 }}
+                        >
+                            <div className="w-2 h-2 bg-black rounded-full" />
+                        </motion.div>
+                    </div>
+
+                    <theme.icon size={80} style={{ color: theme.color }} className="mt-2" />
                 </motion.div>
             </motion.div>
 
