@@ -88,7 +88,7 @@ export default function AlertPage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="z-10 max-w-lg w-full mb-20"
+                className="z-10 max-w-lg w-full mb-20 flex flex-col items-center"
             >
                 <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-2 drop-shadow-md uppercase tracking-wide">
                     {theme.title}
@@ -99,28 +99,30 @@ export default function AlertPage() {
                 </p>
 
                 {/* Video Player Container */}
-                {/* Changed from fixed aspect-ratio to auto height with constraints */}
-                <div className="w-full bg-black/20 rounded-xl overflow-hidden shadow-2xl mb-8 border border-white/10 relative group flex justify-center">
+                {/* Uses w-fit to wrap tightly around video, preventing empty space/bars */}
+                <div className="w-fit mx-auto rounded-xl overflow-hidden shadow-2xl mb-8 border-4 border-white/20 relative group bg-black/20">
                     {!videoError ? (
                         <video
                             controls
                             autoPlay
                             playsInline
-                            className="w-full max-h-[60vh] object-contain"
+                            // max-h-[50vh] ensures it doesn't take too much screen
+                            // max-w-full ensures it doesn't overflow width
+                            className="max-h-[50vh] max-w-full h-auto w-auto object-contain block"
                             onError={() => setVideoError(true)}
                             src={`/videos/${theme.videoFile}`}
                         >
                             O teu browser não suporta vídeo.
                         </video>
                     ) : (
-                        <div className="flex flex-col items-center justify-center h-48 w-full text-white/50 p-4 bg-black/40">
+                        <div className="flex flex-col items-center justify-center h-48 w-64 text-white/50 p-4">
                             <span className="text-sm">Vídeo indisponível ({theme.videoFile})</span>
                         </div>
                     )}
                 </div>
 
                 {/* Info Card */}
-                <div className="bg-black/30 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-left shadow-lg">
+                <div className="bg-black/30 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-left shadow-lg w-full">
                     <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-2">
                         <AlertTriangle className="text-yellow-400" size={20} />
                         O que deves saber:
