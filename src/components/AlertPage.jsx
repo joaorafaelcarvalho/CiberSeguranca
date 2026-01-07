@@ -89,11 +89,11 @@ export default function AlertPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="z-10 w-full max-w-sm flex flex-col items-center gap-6 mb-12"
+                className="z-10 w-full max-w-xs flex flex-col items-center gap-6 mb-12"
             >
 
                 {/* Video Player - Applied Styles Directly to Video to ensure perfect fit */}
-                <div className="flex justify-center w-50">
+                <div className="flex justify-center w-full">
                     {!videoError ? (
                         <video
                             controls
