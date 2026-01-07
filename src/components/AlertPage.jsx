@@ -29,111 +29,103 @@ export default function AlertPage() {
 
     return (
         <div
-            className="min-h-screen flex flex-col items-center justify-start p-6 text-center relative overflow-y-auto"
+            className="min-h-screen flex flex-col items-center justify-start py-8 px-4 text-center relative overflow-y-auto"
             style={{ backgroundColor: theme.color }}
         >
             {/* Background decoration */}
             <div className="absolute inset-0 bg-black opacity-20 pointer-events-none fixed" />
 
-            {/* Animated Character Icon ("Boneco") */}
+            {/* Top Header Section */}
             <motion.div
-                initial={{ scale: 0, y: -100 }}
-                animate={{ scale: 1, y: 0 }}
-                transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20
-                }}
-                className="relative z-10 mt-8 mb-6"
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                className="z-10 w-full mb-4"
+            >
+                <h1 className="text-2xl md:text-4xl font-extrabold text-white drop-shadow-md uppercase tracking-wide">
+                    {theme.title}
+                </h1>
+                <p className="text-white/80 text-xs font-bold uppercase tracking-[0.2em] mt-1">
+                    Alerta de Segurança
+                </p>
+            </motion.div>
+
+            {/* Animated Character Icon ("Boneco") - Smaller for mobile */}
+            <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative z-10 mb-6"
             >
                 <motion.div
-                    animate={{
-                        y: [0, -20, 0],
-                        rotate: [0, 5, -5, 0]
-                    }}
-                    transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        ease: "easeInOut"
-                    }}
-                    className="bg-white p-6 rounded-full shadow-2xl border-4 border-white/20 backdrop-blur-sm relative"
+                    animate={{ y: [0, -10, 0], rotate: [0, 3, -3, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="bg-white p-3 rounded-full shadow-xl border-4 border-white/20 backdrop-blur-sm relative"
                 >
-                    {/* Eyes to make it a character */}
-                    <div className="absolute top-1/4 left-1/2 -translate-x-1/2 flex gap-4 z-20 w-full justify-center -mt-6">
+                    {/* Eyes */}
+                    <div className="absolute top-1/4 left-1/2 -translate-x-1/2 flex gap-2 z-20 w-full justify-center -mt-4">
                         <motion.div
-                            className="w-8 h-8 bg-white rounded-full border-4 border-black flex items-center justify-center"
+                            className="w-4 h-4 bg-white rounded-full border-2 border-black flex items-center justify-center"
                             initial={{ scaleY: 0.1 }}
                             animate={{ scaleY: 1 }}
                             transition={{ delay: 0.5 }}
                         >
-                            <div className="w-2 h-2 bg-black rounded-full" />
+                            <div className="w-1 h-1 bg-black rounded-full" />
                         </motion.div>
                         <motion.div
-                            className="w-8 h-8 bg-white rounded-full border-4 border-black flex items-center justify-center"
+                            className="w-4 h-4 bg-white rounded-full border-2 border-black flex items-center justify-center"
                             initial={{ scaleY: 0.1 }}
                             animate={{ scaleY: 1 }}
                             transition={{ delay: 0.5 }}
                         >
-                            <div className="w-2 h-2 bg-black rounded-full" />
+                            <div className="w-1 h-1 bg-black rounded-full" />
                         </motion.div>
                     </div>
-
-                    <theme.icon size={80} style={{ color: theme.color }} className="mt-2" />
+                    <theme.icon size={48} style={{ color: theme.color }} className="mt-1" />
                 </motion.div>
             </motion.div>
 
-            {/* Main Content */}
+            {/* Main Content Area */}
             <motion.div
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="z-10 max-w-lg w-full mb-20 flex flex-col items-center"
+                transition={{ delay: 0.2 }}
+                className="z-10 w-full max-w-sm flex flex-col items-center gap-6 mb-12"
             >
-                <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-2 drop-shadow-md uppercase tracking-wide">
-                    {theme.title}
-                </h1>
 
-                <p className="text-white/90 font-medium text-lg mb-8 uppercase tracking-widest opacity-80">
-                    Alerta de Segurança
-                </p>
-
-                {/* Video Player Container */}
-                {/* Uses w-fit to wrap tightly around video, preventing empty space/bars */}
-                <div className="w-fit mx-auto rounded-xl overflow-hidden shadow-2xl mb-8 border-4 border-white/20 relative group bg-black/20">
+                {/* Video Player Container - Mobile Optimized (9:16 friendlier) */}
+                {/* Limited height (35vh) to leave room for text. Width restrained. */}
+                <div className="w-auto mx-auto rounded-lg overflow-hidden shadow-2xl border-4 border-white/30 relative bg-black/30">
                     {!videoError ? (
                         <video
                             controls
                             autoPlay
                             playsInline
-                            // max-h-[50vh] ensures it doesn't take too much screen
-                            // max-w-full ensures it doesn't overflow width
-                            className="max-h-[50vh] max-w-full h-auto w-auto object-contain block"
+                            className="max-h-[35vh] max-w-full h-auto w-auto object-contain block"
                             onError={() => setVideoError(true)}
                             src={`/videos/${theme.videoFile}`}
                         >
-                            O teu browser não suporta vídeo.
+                            Browser sem suporte.
                         </video>
                     ) : (
-                        <div className="flex flex-col items-center justify-center h-48 w-64 text-white/50 p-4">
-                            <span className="text-sm">Vídeo indisponível ({theme.videoFile})</span>
+                        <div className="flex flex-col items-center justify-center h-40 w-56 text-white/50 p-4">
+                            <span className="text-xs text-center">Vídeo indisponível<br />({theme.videoFile})</span>
                         </div>
                     )}
                 </div>
 
-                {/* Info Card */}
-                <div className="bg-black/30 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-left shadow-lg w-full">
-                    <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-2">
-                        <AlertTriangle className="text-yellow-400" size={20} />
-                        O que deves saber:
+                {/* Info Card - Compact */}
+                <div className="bg-black/40 backdrop-blur-md p-5 rounded-xl border border-white/20 text-left shadow-lg w-full">
+                    <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <AlertTriangle className="text-yellow-400" size={18} />
+                        Atenção:
                     </h3>
-                    <p className="text-lg md:text-xl font-light text-white leading-relaxed">
+                    <p className="text-base font-light text-white leading-relaxed">
                         {theme.detailedText || theme.message}
                     </p>
                 </div>
             </motion.div>
 
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white text-xs z-20 uppercase tracking-widest opacity-60 pointer-events-none">
+            <div className="fixed bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent text-white text-[10px] z-20 uppercase tracking-widest opacity-50 pointer-events-none">
                 CyberSec Kids
             </div>
         </div>
