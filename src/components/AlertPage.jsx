@@ -99,20 +99,21 @@ export default function AlertPage() {
                 </p>
 
                 {/* Video Player Container */}
-                <div className="w-full aspect-video bg-black/40 rounded-xl overflow-hidden shadow-2xl mb-8 border border-white/10 relative group">
+                {/* Changed from fixed aspect-ratio to auto height with constraints */}
+                <div className="w-full bg-black/20 rounded-xl overflow-hidden shadow-2xl mb-8 border border-white/10 relative group flex justify-center">
                     {!videoError ? (
                         <video
                             controls
                             autoPlay
                             playsInline
-                            className="w-full h-full object-cover"
+                            className="w-full max-h-[60vh] object-contain"
                             onError={() => setVideoError(true)}
                             src={`/videos/${theme.videoFile}`}
                         >
                             O teu browser não suporta vídeo.
                         </video>
                     ) : (
-                        <div className="flex flex-col items-center justify-center h-full text-white/50 p-4">
+                        <div className="flex flex-col items-center justify-center h-48 w-full text-white/50 p-4 bg-black/40">
                             <span className="text-sm">Vídeo indisponível ({theme.videoFile})</span>
                         </div>
                     )}
