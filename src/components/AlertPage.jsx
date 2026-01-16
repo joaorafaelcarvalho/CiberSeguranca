@@ -2,13 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { themes } from '../data/themes';
-import { AlertTriangle } from 'lucide-react';
+import { AlertTriangle, Swords, ShieldCheck } from 'lucide-react';
 
 export default function AlertPage() {
     const { themeId } = useParams();
     const navigate = useNavigate();
     const theme = themes.find(t => t.id === themeId);
     const [videoError, setVideoError] = useState(false);
+    const [role, setRole] = useState(null);
+
+    useEffect(() => {
+        // Randomly assign role on mount
+        setRole(Math.random() < 0.5 ? 'attacker' : 'defender');
+    }, []);
 
     // Redirect or show error if theme not found
     if (!theme) {
@@ -82,6 +88,29 @@ export default function AlertPage() {
                     </div>
                     <theme.icon size={48} style={{ color: theme.color }} className="mt-1" />
                 </motion.div>
+            </motion.div>
+
+            {/* Role Assignment Badge */}
+            <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className={`mb-6 px-6 py-3 rounded-full border-2 font-bold text-lg uppercase tracking-wider shadow-lg flex items-center gap-3 ${role === 'attacker'
+                        ? 'bg-red-600/80 border-red-400 text-white'
+                        : 'bg-blue-600/80 border-blue-400 text-white'
+                    }`}
+            >
+                {role === 'attacker' ? (
+                    <>
+                        <Swords size={24} />
+                        <span>Tu és: Atacante</span>
+                    </>
+                ) : (
+                    <>
+                        <ShieldCheck size={24} />
+                        <span>Tu és: Defensor</span>
+                    </>
+                )}
             </motion.div>
 
             {/* Main Content Area */}
