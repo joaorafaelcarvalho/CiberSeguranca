@@ -8,7 +8,8 @@ import {
     Ghost,
     Unlock,
     CreditCard,
-    GlobeLock
+    GlobeLock,
+    Wifi
 } from 'lucide-react';
 
 export const themes = [
@@ -101,5 +102,14 @@ export const themes = [
         videoFile: 'deepweb.mp4',
         color: '#000000', // Black
         icon: GlobeLock
+    },
+    {
+        id: 'network-intrusion',
+        title: 'Intrusão de Rede (O Espião Wi-Fi)',
+        message: 'Cuidado onde te ligas!',
+        detailedText: 'A intrusão de rede acontece quando alguém entra na tua ligação Wi-Fi sem permissão para espiar o que fazes. Evita redes Wi-Fi públicas sem password e muda a senha da tua internet de casa regularmente para manter os "penduras" digitais longe!',
+        videoFile: 'network.mp4',
+        color: '#F72585', // Pink
+        icon: Wifi
     }
 ];
