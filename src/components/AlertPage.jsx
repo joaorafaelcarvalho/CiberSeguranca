@@ -92,23 +92,27 @@ export default function AlertPage() {
 
             {/* Role Assignment Badge */}
             <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
+                initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className={`mb-6 px-6 py-3 rounded-full border-2 font-bold text-lg uppercase tracking-wider shadow-lg flex items-center gap-3 ${role === 'attacker'
-                        ? 'bg-red-600/80 border-red-400 text-white'
-                        : 'bg-blue-600/80 border-blue-400 text-white'
+                transition={{
+                    delay: 0.3,
+                    type: "spring",
+                    stiffness: 200
+                }}
+                className={`mb-8 px-8 py-4 rounded-2xl border-4 font-black text-3xl uppercase tracking-widest shadow-[0_0_30px_rgba(0,0,0,0.5)] flex items-center gap-4 transform ${role === 'attacker'
+                    ? 'bg-gradient-to-r from-red-600 to-red-800 border-red-400 text-white'
+                    : 'bg-gradient-to-r from-blue-600 to-blue-800 border-blue-400 text-white'
                     }`}
             >
                 {role === 'attacker' ? (
                     <>
-                        <Swords size={24} />
-                        <span>Tu és: Atacante</span>
+                        <Swords size={42} strokeWidth={2.5} />
+                        <span className="drop-shadow-md">Tu és: Atacante</span>
                     </>
                 ) : (
                     <>
-                        <ShieldCheck size={24} />
-                        <span>Tu és: Defensor</span>
+                        <ShieldCheck size={42} strokeWidth={2.5} />
+                        <span className="drop-shadow-md">Tu és: Defensor</span>
                     </>
                 )}
             </motion.div>
